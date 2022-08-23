@@ -1,0 +1,13 @@
+TopNProfit = 
+    IF(    
+        ISFILTERED(DimCustomer[CustName]), //ISFILTERED 
+        IF(
+            [Customerrank]<=Parameter[Parameter Value], [TotalProfit],BLANK()
+        ), //IF 
+            [TotalProfit],
+            TOPN(Parameter[Parameter Value],
+         VALUES(DimCustomer[CustID]), 
+            [TotalProfit]
+            ) //TOPN 
+        ) // CALCULATE - CALCULATE ( <Expression> [, <Filter> [, <Filter> [, … ] ] ] )
+    )//IF
