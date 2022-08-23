@@ -1,0 +1,12 @@
+AVGMP = 
+    CALCULATE(
+        [TotalProfit],
+        FILTER(
+                VALUES (DimProduct[AVGM]), // VALUES 
+                COUNTROWS(
+                    FILTER('AVGM Group', DimProduct[AVGM] >= 'AVGM Group'[Min] && 
+                        DimProduct[AVGM] <'AVGM Group'[Max]
+                    )//FILTER, && 
+                )>0  //COUNTROWS  
+        )//FILTER 
+    )
